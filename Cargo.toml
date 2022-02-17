@@ -1,0 +1,18 @@
+[package]
+name = "fut-compat"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+futures = "^0.3"
+async-trait = "^0.1"
+
+tokio = { version = "^1", features = ["rt", "net", "io-util", "sync", "fs"], optional = true }
+tokio-stream = { version = "^0.1", features = ["fs"], optional = true }
+async-std = { version = "^1", features = ["unstable"], optional = true }
+
+[features]
+default = ["all"]
+all = ["tokio-rt", "async-std-rt"]
+tokio-rt = ["tokio", "tokio-stream"]
+async-std-rt = ["async-std"]

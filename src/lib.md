@@ -1,5 +1,3 @@
-# fut-compat
-
 Offers compatibility between the [`tokio`](https://docs.rs/tokio) and
 [`async_std`](https://docs.rs/async-std) runtimes by providing their most
 important functionalities through an unified interface.
@@ -24,7 +22,7 @@ feature:
 The [`futures`](https://docs.rs/futures) crate defines the [`Spawn`](https://docs.rs/futures/latest/futures/task/trait.Spawn.html) trait which abstracts away the `spawn` methods provided by the [`tokio`](https://docs.rs/tokio) and
 [`async_std`](https://docs.rs/async-std) runtimes which are used to spawn new tasks.
 
-This crate provides two objects `TokioExecutor` and `AsyncStdExecutor` which implement the [`Spawn`](https://docs.rs/futures/latest/futures/task/trait.Spawn.html) trait by internally calling the `spawn` method of the respective runtime. Now you can write code which internally requires a way of spawning new tasks without relying on a particular runtime.
+This crate provides two objects [`TokioExecutor`](crate::task::TokioExecutor) and [`AsyncStdExecutor`](crate::task::AsyncStdExecutor) which implement the [`Spawn`](https://docs.rs/futures/latest/futures/task/trait.Spawn.html) trait by internally calling the `spawn` method of the respective runtime. Now you can write code which internally requires a way of spawning new tasks without relying on a particular runtime.
 
 ```rust
 use futures::task::{Spawn, SpawnExt, SpawnError};

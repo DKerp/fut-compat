@@ -72,7 +72,7 @@ impl UnixStream for ::async_std::os::unix::net::UnixStream {
     async fn connect<P: AsRef<Path> + Send>(path: P) -> std::io::Result<Self> {
         let path = path.as_ref();
         let path: &Path = path.into();
-        
+
         Self::connect(path).await
     }
 

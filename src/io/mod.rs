@@ -1,9 +1,3 @@
-use std::io::{Error, ErrorKind, SeekFrom};
-use std::pin::Pin;
-use std::task::{Context, Poll};
-
-use futures::io::{AsyncRead, AsyncBufRead, AsyncWrite, AsyncSeek};
-
 pub use futures::io::AllowStdIo;
 
 
@@ -12,4 +6,6 @@ pub use futures::io::AllowStdIo;
 #[cfg(feature = "tokio")]
 #[cfg_attr(doc_cfg, doc(cfg(feature = "tokio")))]
 mod tokio;
+#[cfg(feature = "tokio")]
+#[cfg_attr(doc_cfg, doc(cfg(feature = "tokio")))]
 pub use self::tokio::*;

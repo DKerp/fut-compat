@@ -1,5 +1,9 @@
 use super::*;
 
+use futures::task::{Spawn, LocalSpawn};
+use futures::task::{SpawnError, FutureObj, LocalFutureObj};
+use futures::FutureExt;
+
 
 
 /// An executor for the [`tokio`](https://docs.rs/tokio) runtime.

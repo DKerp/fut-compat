@@ -15,12 +15,16 @@ use async_trait::async_trait;
 #[cfg(feature = "tokio")]
 #[cfg_attr(doc_cfg, doc(cfg(feature = "tokio")))]
 mod tokio;
+#[cfg(feature = "tokio")]
+#[cfg_attr(doc_cfg, doc(cfg(feature = "tokio")))]
 pub use self::tokio::*;
 
 /// Contains the compatibility objects for the [`async_std`](https://docs.rs/async-std) runtime.
 #[cfg(feature = "async-std")]
 #[cfg_attr(doc_cfg, doc(cfg(feature = "async-std")))]
 mod async_std;
+#[cfg(feature = "async-std")]
+#[cfg_attr(doc_cfg, doc(cfg(feature = "async-std")))]
 pub use self::async_std::*;
 
 

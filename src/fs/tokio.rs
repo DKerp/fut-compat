@@ -1,4 +1,5 @@
 use super::*;
+use crate::io::TokioCompat;
 
 use ::tokio::fs;
 
@@ -147,8 +148,35 @@ impl File for fs::File {
 }
 
 #[async_trait]
+impl File for TokioCompat<fs::File> {
+    async fn open<P: AsRef<Path> + Send>(path: P) -> std::io::Result<Self> {
+        fs::File::open(path).await.map(|inner| Self::new(inner))
+    }
+
+    async fn create<P: AsRef<Path> + Send>(path: P) -> std::io::Result<Self> {
+        fs::File::create(path).await.map(|inner| Self::new(inner))
+    }
+
+    async fn sync_all(&self) -> std::io::Result<()> {
+        self.get_ref().sync_all().await
+    }
+
+    async fn sync_data(&self) -> std::io::Result<()> {
+        self.get_ref().sync_data().await
+    }
+
+    async fn set_len(&self, size: u64) -> std::io::Result<()> {
+        self.get_ref().set_len(size).await
+    }
+
+    async fn set_permissions(&self, perm: Permissions) -> std::io::Result<()> {
+        self.get_ref().set_permissions(perm).await
+    }
+}
+
+#[async_trait]
 impl OpenOptions for fs::OpenOptions {
-    type File = fs::File;
+    type File = TokioCompat<fs::File>;
 
     fn new() -> Self {
         Self::new()
@@ -179,7 +207,7 @@ impl OpenOptions for fs::OpenOptions {
     }
 
     async fn open<P: AsRef<Path> + Send>(&self, path: P) -> std::io::Result<Self::File> {
-        self.open(path).await
+        self.open(path).await.map(|inner| Self::File::new(inner))
     }
 }
 

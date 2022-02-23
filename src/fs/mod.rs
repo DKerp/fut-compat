@@ -12,12 +12,16 @@ use async_trait::async_trait;
 #[cfg(feature = "tokio")]
 #[cfg_attr(doc_cfg, doc(cfg(feature = "tokio")))]
 mod tokio;
+#[cfg(feature = "tokio")]
+#[cfg_attr(doc_cfg, doc(cfg(feature = "tokio")))]
 pub use self::tokio::*;
 
 /// Contains the compatibility objects for the [`async_std`](https://docs.rs/async-std) runtime.
 #[cfg(feature = "async-std")]
 #[cfg_attr(doc_cfg, doc(cfg(feature = "async-std")))]
 mod async_std;
+#[cfg(feature = "async-std")]
+#[cfg_attr(doc_cfg, doc(cfg(feature = "async-std")))]
 pub use self::async_std::*;
 
 
@@ -108,36 +112,6 @@ pub trait File: Sized {
     async fn set_len(&self, size: u64) -> std::io::Result<()>;
 
     async fn set_permissions(&self, perm: Permissions) -> std::io::Result<()>;
-}
-
-#[async_trait]
-impl<T> File for crate::io::TokioCompat<T>
-where
-    T: File + Sync,
-{
-    async fn open<P: AsRef<Path> + Send>(path: P) -> std::io::Result<Self> {
-        T::open(path).await.map(|file| crate::io::TokioCompat::new(file))
-    }
-
-    async fn create<P: AsRef<Path> + Send>(path: P) -> std::io::Result<Self> {
-        T::create(path).await.map(|file| crate::io::TokioCompat::new(file))
-    }
-
-    async fn sync_all(&self) -> std::io::Result<()> {
-        self.get_ref().sync_all().await
-    }
-
-    async fn sync_data(&self) -> std::io::Result<()> {
-        self.get_ref().sync_data().await
-    }
-
-    async fn set_len(&self, size: u64) -> std::io::Result<()> {
-        self.get_ref().set_len(size).await
-    }
-
-    async fn set_permissions(&self, perm: Permissions) -> std::io::Result<()> {
-        self.get_ref().set_permissions(perm).await
-    }
 }
 
 /// An async abstraction over [`std::fs::OpenOptions`].

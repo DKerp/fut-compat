@@ -213,6 +213,10 @@ impl File for fs::File {
         self.set_len(size).await
     }
 
+    async fn metadata(&self) -> std::io::Result<Metadata> {
+        self.metadata().await
+    }
+
     async fn set_permissions(&self, perm: Permissions) -> std::io::Result<()> {
         self.set_permissions(perm).await
     }

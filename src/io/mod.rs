@@ -1,5 +1,20 @@
 pub use futures::io::AllowStdIo;
 
+pub use futures::io::{
+    AsyncRead,
+    AsyncReadExt,
+    AsyncBufRead,
+    AsyncBufReadExt,
+    AsyncWrite,
+    AsyncWriteExt,
+    AsyncSeek,
+    AsyncSeekExt,
+};
+
+
+
+pub use std::io::Result;
+
 
 
 /// Contains the compatibility objects for the [`tokio`](https://docs.rs/tokio) runtime.

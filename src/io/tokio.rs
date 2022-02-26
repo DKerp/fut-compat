@@ -16,12 +16,15 @@ use ::tokio::io::{
 
 
 
+/// Provides compatibility between objects implementing [`tokio`](https://docs.rs/tokio)'s async io traits and
+/// the corresponding traits defined by the [`futures`](https://docs.rs/futures) crate.
 pub struct TokioCompat<T> {
     inner: T,
     seek_in_progress: bool,
 }
 
 impl<T> TokioCompat<T> {
+    /// Creates a new instance by wrapping the `inner` object.
     pub fn new(inner: T) -> Self {
         Self {
             inner,
@@ -29,14 +32,17 @@ impl<T> TokioCompat<T> {
         }
     }
 
+    /// Get a reference to the wrapped object.
     pub fn get_ref(&self) -> &T {
         &self.inner
     }
 
+    /// Get a mutable reference to the wrapped object.
     pub fn get_mut(&mut self) -> &mut T {
         &mut self.inner
     }
 
+    /// Consumes the `TokioCompat` object and returns the wrapped object.
     pub fn into_inner(self) -> T {
         self.inner
     }

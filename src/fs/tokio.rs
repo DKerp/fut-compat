@@ -142,6 +142,10 @@ impl File for fs::File {
         self.set_len(size).await
     }
 
+    async fn metadata(&self) -> std::io::Result<Metadata> {
+        self.metadata().await
+    }
+
     async fn set_permissions(&self, perm: Permissions) -> std::io::Result<()> {
         self.set_permissions(perm).await
     }
@@ -167,6 +171,10 @@ impl File for TokioCompat<fs::File> {
 
     async fn set_len(&self, size: u64) -> std::io::Result<()> {
         self.get_ref().set_len(size).await
+    }
+
+    async fn metadata(&self) -> std::io::Result<Metadata> {
+        self.get_ref().metadata().await
     }
 
     async fn set_permissions(&self, perm: Permissions) -> std::io::Result<()> {

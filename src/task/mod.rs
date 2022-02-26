@@ -3,6 +3,8 @@ use std::pin::Pin;
 use std::task::{Context, Poll};
 use std::error::Error;
 
+pub use futures::task::{Spawn, SpawnExt};
+
 
 
 /// Contains the compatibility objects for the [`tokio`](https://docs.rs/tokio) runtime.

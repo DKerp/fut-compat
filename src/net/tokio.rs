@@ -162,3 +162,25 @@ impl UnixStream for TokioCompat<net::UnixStream> {
         self.get_ref().local_addr()
     }
 }
+
+
+
+#[cfg(unix)]
+#[cfg_attr(doc_cfg, doc(cfg(unix)))]
+#[async_trait]
+impl UnixListener for net::UnixListener {
+    type UnixStream = net::UnixStream;
+    type SocketAddr = net::unix::SocketAddr;
+
+    async fn bind<P: AsRef<Path> + Send>(path: P) -> std::io::Result<Self> {
+        Self::bind(path)
+    }
+
+    async fn accept(&self) -> std::io::Result<(Self::UnixStream, Self::SocketAddr)> {
+        self.accept().await
+    }
+
+    fn local_addr(&self) -> std::io::Result<Self::SocketAddr> {
+        self.local_addr()
+    }
+}

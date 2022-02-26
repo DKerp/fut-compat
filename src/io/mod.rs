@@ -1,4 +1,7 @@
+pub use std::io::Result;
+
 pub use futures::io::AllowStdIo;
+pub use futures::io::{BufReader, BufWriter};
 
 pub use futures::io::{
     AsyncRead,
@@ -11,9 +14,15 @@ pub use futures::io::{
     AsyncSeekExt,
 };
 
+pub use futures::io::{
+    copy,
+    copy_buf,
+    empty,
+    repeat,
+    sink,
+};
 
 
-pub use std::io::Result;
 
 
 

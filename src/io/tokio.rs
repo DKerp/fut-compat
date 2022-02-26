@@ -4,8 +4,6 @@ use std::task::{Context, Poll};
 
 use futures::io::{AsyncRead, AsyncBufRead, AsyncWrite, AsyncSeek};
 
-// use std::ops::{Deref, DerefMut};
-
 use ::tokio::io::{
     AsyncRead as TokioAsyncRead,
     AsyncBufRead as TokioAsyncBufRead,
@@ -47,32 +45,6 @@ impl<T> TokioCompat<T> {
         self.inner
     }
 }
-
-// impl<T> Deref for TokioCompat<T> {
-//     type Target = T;
-//
-//     fn deref(&self) -> &Self::Target {
-//         &self.inner
-//     }
-// }
-//
-// impl<T> DerefMut for TokioCompat<T> {
-//     fn deref_mut(&mut self) -> &mut Self::Target {
-//         &mut self.inner
-//     }
-// }
-//
-// impl<T> AsRef<T> for TokioCompat<T> {
-//     fn as_ref(&self) -> &T {
-//         &self.inner
-//     }
-// }
-//
-// impl<T> AsMut<T> for TokioCompat<T> {
-//     fn as_mut(&mut self) -> &mut T {
-//         &mut self.inner
-//     }
-// }
 
 impl<T> AsyncRead for TokioCompat<T>
 where

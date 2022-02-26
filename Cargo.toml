@@ -1,7 +1,14 @@
 [package]
 name = "fut-compat"
+description = "Offers compatibility between the tokio and async_std runtimes."
 version = "0.1.0"
+authors = ["Denis Kerp"]
 edition = "2021"
+readme = "README.md"
+repository = "https://github.com/DKerp/fut-compat"
+license = "MIT"
+keywords = ["futures", "compatibility", "async", "tokio", "async-std"]
+categories = ["asynchronous"]
 
 [dependencies]
 futures = "^0.3"

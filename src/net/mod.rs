@@ -176,6 +176,7 @@ pub trait TcpListener: Sized {
 
 /// An async abstraction over [`std::os::unix::net::UnixStream`].
 #[cfg(unix)]
+#[cfg_attr(doc_cfg, doc(cfg(unix)))]
 #[async_trait]
 pub trait UnixStream: Sized {
     type SocketAddr: UnixSocketAddr;
@@ -185,6 +186,23 @@ pub trait UnixStream: Sized {
     fn pair() -> std::io::Result<(Self, Self)>;
 
     fn peer_addr(&self) -> std::io::Result<Self::SocketAddr>;
+
+    fn local_addr(&self) -> std::io::Result<Self::SocketAddr>;
+}
+
+
+
+/// An async abstraction over [`std::os::unix::net::UnixListener`].
+#[cfg(unix)]
+#[cfg_attr(doc_cfg, doc(cfg(unix)))]
+#[async_trait]
+pub trait UnixListener: Sized {
+    type UnixStream: UnixStream;
+    type SocketAddr: UnixSocketAddr;
+
+    async fn bind<P: AsRef<Path> + Send>(path: P) -> std::io::Result<Self>;
+
+    async fn accept(&self) -> std::io::Result<(Self::UnixStream, Self::SocketAddr)>;
 
     fn local_addr(&self) -> std::io::Result<Self::SocketAddr>;
 }

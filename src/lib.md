@@ -2,7 +2,7 @@ Offers compatibility between the [`tokio`](https://docs.rs/tokio) and
 [`async_std`](https://docs.rs/async-std) runtimes by providing their most
 important functionalities through an unified interface.
 
-The goal of this crate is to enable the developement of async crates which can make use of all the important objects (e.g. `File`, `TcpListener`, etc.) and functions (e.g. `spawn` for spawning new tasks) provided by fully-fledged runtimes without relying on a concrete runtime. This enables downstream developers to choose the runtime which fits their needs best.
+The goal of this crate is to enable the developement of async crates which can make use of all the important objects (e.g. `File`, `TcpListener`, etc.) and functions (e.g. `spawn` for spawning new tasks) provided by fully-fledged async runtimes without relying on a concrete runtime. This enables downstream developers to choose the runtime which fits their needs best.
 
 This is archieved by providing abstractions over all important functionalities and implementing them for the respective runtimes by using their respective objects and methods. We either make us of traits already given by the [`futures`](https://docs.rs/futures) crate maintained by the rust team, or we define our own.
 

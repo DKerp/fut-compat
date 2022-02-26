@@ -27,9 +27,9 @@ pub use futures::io::{
 
 
 /// Contains the compatibility objects for the [`tokio`](https://docs.rs/tokio) runtime.
-#[cfg(feature = "tokio")]
-#[cfg_attr(doc_cfg, doc(cfg(feature = "tokio")))]
+#[cfg(feature = "tokio-rt")]
+#[cfg_attr(docsrs, doc(cfg(feature = "tokio-rt")))]
 mod tokio;
-#[cfg(feature = "tokio")]
-#[cfg_attr(doc_cfg, doc(cfg(feature = "tokio")))]
+#[cfg(feature = "tokio-rt")]
+#[cfg_attr(docsrs, doc(cfg(feature = "tokio-rt")))]
 pub use self::tokio::*;

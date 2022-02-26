@@ -1,6 +1,4 @@
-Offers compatibility between the [`tokio`](https://docs.rs/tokio) and
-[`async_std`](https://docs.rs/async-std) runtimes by providing their most
-important functionalities through an unified interface.
+Offers compatibility between the [`tokio`](https://docs.rs/tokio) and [`async_std`](https://docs.rs/async-std) runtimes by providing their most important functionalities through an unified interface.
 
 The goal of this crate is to enable the developement of async crates which can make use of all the important objects (e.g. `File`, `TcpListener`, etc.) and functions (e.g. `spawn` for spawning new tasks) provided by fully-fledged async runtimes without relying on a concrete runtime. This enables downstream developers to choose the runtime which fits their needs best.
 
@@ -8,9 +6,7 @@ This is archieved by providing abstractions over all important functionalities a
 
 # Features
 
-By default no runtime specific implementation is included to reduce the number of crates
-you have to import. In order to use a specific runtime you must activate the corresponding
-feature:
+By default no runtime specific implementation is included to reduce the number of crates you have to import. In order to use a specific runtime you must activate the corresponding feature:
 
 |Feature|Runtime|
 |---------|--------|
@@ -19,8 +15,7 @@ feature:
 
 # Example
 
-The [`futures`](https://docs.rs/futures) crate defines the [`Spawn`](https://docs.rs/futures/latest/futures/task/trait.Spawn.html) trait which abstracts away the `spawn` methods provided by the [`tokio`](https://docs.rs/tokio) and
-[`async_std`](https://docs.rs/async-std) runtimes which are used to spawn new tasks.
+The [`futures`](https://docs.rs/futures) crate defines the [`Spawn`](https://docs.rs/futures/latest/futures/task/trait.Spawn.html) trait which abstracts away the `spawn` methods provided by the [`tokio`](https://docs.rs/tokio) and [`async_std`](https://docs.rs/async-std) runtimes which are used to spawn new tasks.
 
 This crate provides two objects [`TokioExecutor`](crate::task::TokioExecutor) and [`AsyncStdExecutor`](crate::task::AsyncStdExecutor) which implement the [`Spawn`](https://docs.rs/futures/latest/futures/task/trait.Spawn.html) trait by internally calling the `spawn` method of the respective runtime. Now you can write code which internally requires a way of spawning new tasks without relying on a particular runtime.
 

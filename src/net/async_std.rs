@@ -65,7 +65,7 @@ impl TcpListener for net::TcpListener {
 
 
 #[cfg(unix)]
-#[cfg_attr(doc_cfg, doc(cfg(unix)))]
+#[cfg_attr(docsrs, doc(cfg(unix)))]
 #[async_trait]
 impl UnixStream for ::async_std::os::unix::net::UnixStream {
     type SocketAddr = std::os::unix::net::SocketAddr;
@@ -93,7 +93,7 @@ impl UnixStream for ::async_std::os::unix::net::UnixStream {
 
 
 #[cfg(unix)]
-#[cfg_attr(doc_cfg, doc(cfg(unix)))]
+#[cfg_attr(docsrs, doc(cfg(unix)))]
 #[async_trait]
 impl UnixListener for ::async_std::os::unix::net::UnixListener {
     type UnixStream = ::async_std::os::unix::net::UnixStream;

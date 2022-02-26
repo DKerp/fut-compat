@@ -5,6 +5,8 @@ use ::async_std::fs;
 
 
 /// [`async_std`](https://docs.rs/async-std)'s abstraction of a [`Filesystem`].
+#[cfg(feature = "async-std-rt")]
+#[cfg_attr(docsrs, doc(cfg(feature = "async-std-rt")))]
 #[derive(Default, Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub struct AsyncStdFs {}
 

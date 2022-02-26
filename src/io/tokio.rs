@@ -16,6 +16,8 @@ use ::tokio::io::{
 
 /// Provides compatibility between objects implementing [`tokio`](https://docs.rs/tokio)'s async io traits and
 /// the corresponding traits defined by the [`futures`](https://docs.rs/futures) crate.
+#[cfg(feature = "tokio-rt")]
+#[cfg_attr(docsrs, doc(cfg(feature = "tokio-rt")))]
 pub struct TokioCompat<T> {
     inner: T,
     seek_in_progress: bool,

@@ -1,5 +1,7 @@
 #![doc = include_str!("./lib.md")]
 
+#![cfg_attr(docsrs, feature(doc_cfg))]
+
 
 
 /// Async abstractions over [`std::io`] and the implementations for the different runtimes.

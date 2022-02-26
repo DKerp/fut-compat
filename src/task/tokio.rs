@@ -7,6 +7,8 @@ use futures::FutureExt;
 
 
 /// An executor for the [`tokio`](https://docs.rs/tokio) runtime.
+#[cfg(feature = "tokio-rt")]
+#[cfg_attr(docsrs, doc(cfg(feature = "tokio-rt")))]
 #[derive(Default, Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub struct TokioExecutor {}
 

@@ -7,6 +7,8 @@ use futures::FutureExt;
 
 
 /// An executor for the [`async_std`](https://docs.rs/async-std) runtime.
+#[cfg(feature = "async-std-rt")]
+#[cfg_attr(docsrs, doc(cfg(feature = "async-std-rt")))]
 #[derive(Default, Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub struct AsyncStdExecutor {}
 

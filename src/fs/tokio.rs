@@ -8,6 +8,8 @@ use tokio_stream::wrappers::ReadDirStream;
 
 
 /// [`tokio`](https://docs.rs/tokio)'s abstraction of a [`Filesystem`].
+#[cfg(feature = "tokio-rt")]
+#[cfg_attr(docsrs, doc(cfg(feature = "tokio-rt")))]
 #[derive(Default, Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub struct TokioFs {}
 

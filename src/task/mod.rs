@@ -8,19 +8,19 @@ pub use futures::task::{Spawn, SpawnExt};
 
 
 /// Contains the compatibility objects for the [`tokio`](https://docs.rs/tokio) runtime.
-#[cfg(feature = "tokio")]
-#[cfg_attr(doc_cfg, doc(cfg(feature = "tokio")))]
+#[cfg(feature = "tokio-rt")]
+#[cfg_attr(docsrs, doc(cfg(feature = "tokio-rt")))]
 mod tokio;
-#[cfg(feature = "tokio")]
-#[cfg_attr(doc_cfg, doc(cfg(feature = "tokio")))]
+#[cfg(feature = "tokio-rt")]
+#[cfg_attr(docsrs, doc(cfg(feature = "tokio-rt")))]
 pub use self::tokio::*;
 
 /// Contains the compatibility objects for the [`async_std`](https://docs.rs/async-std) runtime.
-#[cfg(feature = "async-std")]
-#[cfg_attr(doc_cfg, doc(cfg(feature = "async-std")))]
+#[cfg(feature = "async-std-rt")]
+#[cfg_attr(docsrs, doc(cfg(feature = "async-std-rt")))]
 mod async_std;
-#[cfg(feature = "async-std")]
-#[cfg_attr(doc_cfg, doc(cfg(feature = "async-std")))]
+#[cfg(feature = "async-std-rt")]
+#[cfg_attr(docsrs, doc(cfg(feature = "async-std-rt")))]
 pub use self::async_std::*;
 
 

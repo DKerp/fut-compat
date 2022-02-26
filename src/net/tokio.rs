@@ -6,6 +6,7 @@ use ::tokio::net;
 
 
 #[cfg(unix)]
+#[cfg_attr(docsrs, doc(cfg(unix)))]
 impl UnixSocketAddr for net::unix::SocketAddr {
     fn is_unnamed(&self) -> bool {
         self.is_unnamed()
@@ -118,6 +119,7 @@ impl TcpListener for net::TcpListener {
 
 
 #[cfg(unix)]
+#[cfg_attr(docsrs, doc(cfg(unix)))]
 #[async_trait]
 impl UnixStream for net::UnixStream {
     type SocketAddr = net::unix::SocketAddr;
@@ -140,6 +142,7 @@ impl UnixStream for net::UnixStream {
 }
 
 #[cfg(unix)]
+#[cfg_attr(docsrs, doc(cfg(unix)))]
 #[async_trait]
 impl UnixStream for TokioCompat<net::UnixStream> {
     type SocketAddr = net::unix::SocketAddr;
@@ -166,7 +169,7 @@ impl UnixStream for TokioCompat<net::UnixStream> {
 
 
 #[cfg(unix)]
-#[cfg_attr(doc_cfg, doc(cfg(unix)))]
+#[cfg_attr(docsrs, doc(cfg(unix)))]
 #[async_trait]
 impl UnixListener for net::UnixListener {
     type UnixStream = net::UnixStream;

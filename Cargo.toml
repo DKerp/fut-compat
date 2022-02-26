@@ -26,3 +26,7 @@ async-std = { version = "^1", features = ["unstable"] }
 default = []
 tokio-rt = ["tokio", "tokio-stream"]
 async-std-rt = ["async-std"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
